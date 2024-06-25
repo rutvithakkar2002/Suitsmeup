@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Home</title>
+   </head>
+<body>
+    <div class="container mt-4">
+        <h1>Welcome Home</h1>
+        {% if user_email and user_name %}
+            <p>Welcome, <b>{{ user_name }}</b>! Your email is <b>{{ user_email }}</b>.</p>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3 class="card-title">Upload Images</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'upload-images' %}" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="images">Select Images (at least 5):</label>
+                            <input type="file" class="form-control" id="images" name="image_url" multiple required>
+                            <div class="invalid-feedback">Please upload at least 5 images.</div>
+                            {% if form.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.errors.values %}
+                                        {{ error }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Upload</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <p>Welcome! Please <a href="{% url 'blog-login' %}">log in</a>.</p>
+        {% endif %}
+    </div>
+
+   </body>
+</html>
