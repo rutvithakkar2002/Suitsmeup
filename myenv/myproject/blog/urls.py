@@ -18,8 +18,6 @@ urlpatterns = [
     path('update/<int:id>/', views.update, name='update_user'),
     path('start-iteration/', views.start_iteration, name='start-iteration'),
     path('check-progress/', views.check_progress, name='check-progress'),
-  
-    
 ]
 
 if settings.DEBUG:

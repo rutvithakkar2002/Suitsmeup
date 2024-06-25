@@ -161,7 +161,7 @@ def upload(request):
                 department = Department.objects.get(departmentid=department_id)  # Fetch the department
                 DepartmentWiseUser.objects.create(user=user, department=department)  # Create and save the relationship
 
-            return render(request, 'blog/success.html')
+            return render(request, 'blog/login.html')
     else:
         form = UserForm()
     
